@@ -1,0 +1,72 @@
+div,h1{
+	padding:0;
+	margin: 0;
+}
+.container{
+	min-width:600px;
+	margin:10px;
+	background: #eee;
+	overflow: hidden;
+	padding:20px 165px 20px 245px;
+	border:1px solid #999;
+}
+.middle{
+	float: left;
+	width: 100%;
+	border:1px solid #999;
+	padding: 20px;
+	box-sizing:border-box;
+	background: #fff;
+	/*position: relative;*/
+}
+.left{
+	width: 200px;
+	float: left;
+	margin-left: -100%;
+	position: relative;
+	left: -225px;
+	border:1px solid #999;
+	box-sizing:border-box;
+	background: #fff;
+	overflow: hidden;
+}
+.right{
+	width: 120px;
+	float: left;
+	margin-left: -120px;
+	position: relative;
+	right: -145px;
+	border:1px solid #999;
+	box-sizing:border-box;
+	background: #fff;
+	padding: 20px;
+}
+
+.logo{
+	width: 80px;
+	height: 80px;
+	background: #eee;
+	border:1px solid #999;
+	margin:20px;
+	float: left;
+}
+.name{
+	margin:20px;
+}
+.title{
+	margin-bottom: 20px;
+}
+.text{
+	margin-top: 0;
+}
+.img{
+	box-sizing:border-box;
+	width: 80px;
+	height: 80px;
+	border:1px solid #999;
+	background: #eee;
+	margin-bottom: 20px;
+}
+.img:nth-child(4){
+	margin-bottom:0;
+}
