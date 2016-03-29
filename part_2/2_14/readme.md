@@ -40,7 +40,7 @@ appendChild就显得相对温柔，只会在标签内容的最后面加上内容
 innerHTML和innerText的区别：</br>
 ---
 
-<div id="box">hello <span>world!</span></div></br>
-document.getElementById('box').innnerHTML = hello <span>world!</span></br>
+\<div id="box"\>hello \<span\>world!\</span\>\</div\></br>
+document.getElementById('box').innnerHTML = hello \<span\>world!\</span\></br>
 document.getElementById('box').innerText = hello world!</br>
 看出innerHTML有多粗放了吧。。。</br>
