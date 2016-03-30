@@ -1,0 +1,162 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+
+<body>
+    <ul id="source">
+        <li>北京空气质量：<b>90</b></li>
+        <li>上海空气质量：<b>70</b></li>
+        <li>天津空气质量：<b>80</b></li>
+        <li>广州空气质量：<b>50</b></li>
+        <li>深圳空气质量：<b>40</b></li>
+        <li>福州空气质量：<b>32</b></li>
+        <li>成都空气质量：<b>90</b></li>
+    </ul>
+    <ul id="resort">
+        <!-- 
+    <li>第一名：北京空气质量：<b>90</b></li>
+    <li>第二名：北京空气质量：<b>90</b></li>
+    <li>第三名：北京空气质量：<b>90</b></li>
+     -->
+    </ul>
+    <button id="sort-btn">排序</button>
+    <script type="text/javascript">
+    // 把1转换成一，把2转换成二 等等
+    // 此函数只写到万级
+    function numChange(num) {
+        num = String(num);
+        var numArr = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+        var carry = ['', '十', '百', '千', '万'];
+        // 将传进来的数字一个一个分开，组成数组并求数组长度
+        var splitNum = num.split('');
+        var numLength = splitNum.length;
+        // 声明一个text来存放 中文数字符号
+        var text = '';
+        /*
+          
+          此方法的思想是：
+          9111 九千一百一十一
+          从后面往前遍历，给每个数分组
+          九千：一百：一十：一空
+          
+          比如：
+          第一次拿到最后的一个1，进行组合得到一空
+          第二次拿到倒数第二个数1，进行组合得到一十
+          把两个组合起来text ＝ 一十一
+          以此类推，得到九千一百一十一
+          
+          目前还有两个bug待更改：
+          100／1001的正确显示
+         */
+        for (var i = 0; i < numLength; i++) {
+            if (numLength == 2 && splitNum[0] == 1) {
+                // 避免出现19 ＝ 一十九的情况，使正常显示十九
+                text = carry[numLength-1] + numArr[splitNum[numLength - 1]];
+                break;
+            } else if (splitNum[numLength - i - 1] == 0) {
+                // 避免出现101 ＝ 一百零十一，使正常显示一百零一
+                text = numArr[0] + text;
+            } else {
+                text = (numArr[splitNum[numLength - i - 1]] + carry[i]) + text;
+            }
+        }
+        return text;
+    }
+    // console.log(numChange(1001)); //九万九千九百九十九
+    /**
+     * getData方法
+     * 读取id为source的列表，获取其中城市名字及城市对应的空气质量
+     * 返回一个数组，格式见函数中示例
+     */
+    function getData() {
+        /*
+        coding here
+        */
+
+        /*
+        data = [
+          ["北京", 90],
+          ["北京", 90]
+          ……
+        ]
+        */
+        // 用于存放全部数据
+        var data = [];
+        var list = document.getElementById('source');
+        var listName = list.getElementsByTagName('li');
+        var listLength = listName.length;
+        for (var i = 0; i < listLength; i++) {
+            // 用于存放每个城市的数据
+            var arr = [];
+            var content = listName[i].firstChild.nodeValue;
+            // 拿到城市名
+            var cityName = content.substring(0, 2);
+            // 拿到城市的数据
+            var listNum = listName[i].getElementsByTagName('b')[0].innerHTML;
+            arr.push(cityName);
+            arr.push(listNum);
+            // 把每个城市的数据push进data中
+            data.push(arr);
+        }
+        return data;
+    }
+
+    /**
+     * sortAqiData
+     * 按空气质量对data进行从小到大的排序
+     * 返回一个排序后的数组
+     */
+    function sortAqiData(data) {
+        function compare(num1, num2) {
+            return num1[1] - num2[1];
+        }
+        data.sort(compare);
+        return data;
+    }
+
+    /**
+     * render
+     * 将排好序的城市及空气质量指数，输出显示到id位resort的列表中
+     * 格式见ul中的注释的部分
+     */
+    function render(data) {
+        var list = document.getElementById('resort');
+        list.innerHTML = null;
+        var listLength = data.length;
+        for (var i = 0; i < listLength; i++) {
+            var listName = document.createElement('li');
+            var listNumTag = document.createElement('b');
+            var listContent = document.createTextNode('第' + numChange(i + 1) + '名：' + data[i][0] + '空气质量：');
+            var listNum = document.createTextNode(data[i][1]);
+            listNumTag.appendChild(listNum);
+            listName.appendChild(listContent);
+            listName.appendChild(listNumTag);
+            list.appendChild(listName);
+        }
+    }
+
+    function btnHandle() {
+        var aqiData = getData();
+        aqiData = sortAqiData(aqiData);
+        render(aqiData);
+    }
+
+
+    function init() {
+        var btn = document.getElementById('sort-btn');
+        btn.onclick = function() {
+            btnHandle();
+        };
+        // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
+
+    }
+
+    init();
+    </script>
+</body>
+
+</html>
