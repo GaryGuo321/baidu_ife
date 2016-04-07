@@ -1,0 +1,52 @@
+div {
+    border: 1px solid #999;
+    padding: 10px;
+    margin: 2px;
+    background: #fff;
+}
+
+.one {
+    width: 600px;
+    height: 100px;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.two,
+.three {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.four,
+.five,
+.six,
+.seven {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+.eight,
+.nine,
+.ten,
+.eleven,
+.twelve,
+.thirteen,
+.fourteen,
+.fifteen {
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+}
+.color{
+	background: #ff5800;
+}
